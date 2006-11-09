@@ -3,9 +3,7 @@ Jesse Newland
 http://jnewland.com
 jnewland@gmail.com
 
-This is as secure and as spam proof as a contact form as I could manage in a day.
-
-Security Measures
+SECURITY MEASURES
 
 * All form fields are checked for newlines or null bytes followed by email commands.
 * HTTP Referrer is required, and checked against an array of allowed referrers. 
@@ -33,20 +31,19 @@ EXAMPLE FORM:
 
 REQUIRED PARAMETERS:
 
-recipient - valid email address that will be the to address
+* recipient - valid email address that will be the to address
 
-email - valid email that will be the from address. the contents of this parameter will be sent to Akismet for spam checking
+* email - valid email that will be the from address. the contents of this parameter will be sent to Akismet for spam checking
 
-bcc - THIS FIELD IS REQUIRED TO BE BLANK. This is designed to bait spammers. I've found that spammers generally submit all contact form fields, even if commented out. (http://isc.sans.org/diary.php?storyid=1836)
-
+* bcc - THIS FIELD IS REQUIRED TO BE BLANK. This is designed to bait spammers. I've found that spammers generally submit all contact form fields, even if commented out. (http://isc.sans.org/diary.php?storyid=1836)
 
 OPTIONAL PARAMETERS:
 
-redirect - full URL (with http://) that the script will redirect to on success.
+* redirect - full URL (with http://) that the script will redirect to on success.
 
-name - the contents of this parameter will be sent to Akismet for spam checking
+* name - the contents of this parameter will be sent to Akismet for spam checking
 
-comments - the contents of this parameter will be sent to Akismet for spam checking
+* comments - the contents of this parameter will be sent to Akismet for spam checking
 
 All other parameters will be included in the email, but will not be checked by Akismet.
 
