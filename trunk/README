@@ -1,0 +1,53 @@
+phpAkismetContact
+Jesse Newland
+http://jnewland.com
+jnewland@gmail.com
+
+This is as secure and as spam proof as a contact form as I could manage in a day.
+
+Security Measures
+
+* All form fields are checked for newlines or null bytes followed by email commands.
+* HTTP Referrer is required, and checked against an array of allowed referrers. 
+* To and From emails are validated
+* Emails may only be sent to the recipient defined in the script
+* If all of these checks pass, the contents of the email submitted to Akismet to verify it's not spam.
+
+EXAMPLE FORM:
+
+<form action='contact.php' method='POST'>
+  <input type='hidden' class='hidden' name='recipient' value='test@test.com'>
+  <input type='hidden' class='hidden' name='redirect' value='http://test.com/'>
+  <label for='name'>Name</label>
+  <input class='text' maxlength='40' type='text' size='18' name='name' value='Name' />
+  <!-- spam bait - if the bcc field contains anything, this email is rejected -->
+  <!--<label for='bcc'>Bcc</label>-->
+  <!--<input class='text' maxlength='40' type='text' size='18' name='bcc' value='' />-->
+  <label for='email'>Email</label>
+  <input class='text' maxlength='80' type='text' size='18' name='email' value='' />
+  <label for='comments'>Message</label>
+  <textarea name='comments' cols='15' rows='4' type='text'></textarea>
+  <input type='submit' value='Send'>
+  <!-- any additional fields will be include in the email, but won't be checked for spam by Akismet -->
+</form>
+
+REQUIRED PARAMETERS:
+
+recipient - valid email address that will be the to address
+
+email - valid email that will be the from address. the contents of this parameter will be sent to Akismet for spam checking
+
+bcc - THIS FIELD IS REQUIRED TO BE BLANK. This is designed to bait spammers. I've found that spammers generally submit all contact form fields, even if commented out. (http://isc.sans.org/diary.php?storyid=1836)
+
+
+OPTIONAL PARAMETERS:
+
+redirect - full URL (with http://) that the script will redirect to on success.
+
+name - the contents of this parameter will be sent to Akismet for spam checking
+
+comments - the contents of this parameter will be sent to Akismet for spam checking
+
+All other parameters will be included in the email, but will not be checked by Akismet.
+
+Please note that in order to use this, you must have a vaild WordPress API key (http://wordpress.com/api-keys/). They are free for non/small-profit types and getting one will only take a couple of minutes.
