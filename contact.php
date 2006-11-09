@@ -1,27 +1,5 @@
 <?php
 /**
- * phpAkismetContact
- * 
- * Secure PHP contact form with Akismet support
- *
- * Takes any variables posted to this script, and send an email to a specified recipient.
- *
- * REQUIRED PARAMETERS:
- * recipient - valid email address that email will go to
- * OPTIONAL PARAMETERS:
- * redirect - full URL (with http://) that the script will redirect to on success.
- * comments - the contents of this parameter will be sent to Akismet for spam checking
- * bcc - THIS FIELD MUST BE BLANK. This is designed to bait spammers. You may want to insert
- *       it into your form HTML, but comment it out or hide it via CSS.
- *       http://isc.sans.org/diary.php?storyid=1836 
- * All other parameters will be included in the email.
- *
- * Please note that in order to use this, you must have a vaild 
- * {@link http://wordpress.com/api-keys/ WordPress API key}.  They are free for non/small-profit 
- * types and getting one will only take a couple of minutes.
- *
- * For commercial use, please {@link http://akismet.com/commercial/ visit the Akismet commercial licensing page}.
- *
  * @package phpAkismetContact
  * @author Jesse Newland, {@link http://jnewland.com/ http://jnewland.com/}
  * @version 0.1
