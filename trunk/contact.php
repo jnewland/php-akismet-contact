@@ -35,7 +35,7 @@
  */
 
 //REQUIRED - Your Wordpress.com API Key
-$wordpress_API_key = "1ef41e68d5ab";
+$wordpress_API_key = "XXXXXX";
 
 //REQUIRED - website the contact form is being sumbitted from - if the form is located at http://www.test.com/contact, then
 //           this is http://www.test.com
