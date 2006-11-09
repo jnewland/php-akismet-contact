@@ -58,7 +58,9 @@ function valid_email($email){
 
 function error($error){
 	$html = "<html><head><title>Error</title><body><h1 style='color:#FF0000;'>".$error."</h1><a href='javascript:history.go(-1);'>Back</a></body></html>";
-	print $html;
+	$ip = $_SERVER['REMOTE_ADDR'] != getenv('SERVER_ADDR') ? $_SERVER['REMOTE_ADDR'] : getenv('HTTP_X_FORWARDED_FOR');
+	error_log("[client ". $ip ."] php-akismet-contact: " . $error);
+	exit($html);
 }
 
 /**
@@ -75,37 +77,31 @@ if ($_POST){
 		//if there is a newline followed by an email command, reject it.
 		$crack = eregi("(%0A|%0D|\n+|\r+)(content-type:|to:|cc:|bcc:)",$post[$key]);
 		if ($crack) {
-			error("Invalid input detected. You've been logged.");
-			return;
+			error("Invalid input detected.");
 		}
 	}
 } else {
 	error("No values submitted");
-	return;
 }
 
 //verify nothing is in the bcc field
 if (!empty($post["bcc"])) {
-	error("Invalid input detected. You've been logged.");
-	return;
+	error("Invalid input detected");
 }
 
 //verify the recipient is correct
 if ($post["recipient"] != $recipient) {
-	error("Recipient is incorrect. You've been logged.");
-	return;
+	error("Recipient is incorrect");
 }
 
 //verify the sender as a valid email
 if (!valid_email($post["email"])) {
-	error("Sender is invalid. You've been logged.");
-	return;
+	error("Sender is invalid");
 }
 
 //verify the referer is allowed
 if (!valid_referer($referrers)) {
-	error("Referrer is incorrect. You've been logged.");
-	return;
+	error("Referrer is incorrect");
 }
 
 if (!empty($post["redirect"])) {
@@ -139,14 +135,12 @@ $akismet->setType("contact_form");
 //submit to akismet for validation
 if($akismet->isSpam()) {
 	error("Your message was marked as spam by <a href='http://akismet.com'>Akismet</a>. Please try again.");
-	return;
 } else {
 	//akismet passed, send the email
 	if (mail($recipient,"Contact Form Submission",$message,$addlHeaders)) {
 		header($redirect);
 	} else {
-		error("Error sending your message.");
-		return;
+		error("Error sending your message");
 	}
 }
 ?>
