@@ -14,7 +14,6 @@ SECURITY MEASURES
 EXAMPLE FORM:
 
 <form action='contact.php' method='POST'>
-  <input type='hidden' class='hidden' name='recipient' value='test@test.com'>
   <input type='hidden' class='hidden' name='redirect' value='http://test.com/'>
   <label for='name'>Name</label>
   <input class='text' maxlength='40' type='text' size='18' name='name' value='Name' />
@@ -30,8 +29,6 @@ EXAMPLE FORM:
 </form>
 
 REQUIRED PARAMETERS:
-
-* recipient - valid email address that will be the to address
 
 * email - valid email that will be the from address. the contents of this parameter will be sent to Akismet for spam checking
 

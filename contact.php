@@ -89,11 +89,6 @@ if (!empty($post["bcc"])) {
 	error("Invalid input detected");
 }
 
-//verify the recipient is correct
-if ($post["recipient"] != $recipient) {
-	error("Recipient is incorrect");
-}
-
 //verify the sender as a valid email
 if (!valid_email($post["email"])) {
 	error("Sender is invalid");
